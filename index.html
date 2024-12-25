@@ -6,25 +6,9 @@
     <title>Unity WebGL Player | sea ​​battle</title>
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <canvas id="unity-canvas" width=597 height=1282 tabindex="-1" style="width: 597px; height: 1282px; background: #231F20"></canvas>
+    <canvas id="unity-canvas" width=2160 height=4560 tabindex="-1" style="width: 2160px; height: 4560px; background: #231F20"></canvas>
     <script src="Build/seaBattleBuild.loader.js"></script>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script> 
     <script>
-
-
-
-
-
-
-      let telegramAppChatLabs = window.Telegram.WebApp; //////////https://core.telegram.org/bots/webapps#initializing-mini-apps
-      let thisuseFirstrname = telegramAppChatLabs.initDataUnsafe.user.first_name
-      let thisuseLastrname = telegramAppChatLabs.initDataUnsafe.user.last_name
-
-
-
-
-
-
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
@@ -40,41 +24,17 @@
         document.body.style.textAlign = "left";
       }
 
-
-
-      var myGameInstance = null;
-
-
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/seaBattleBuild.data.gz",
-        frameworkUrl: "Build/seaBattleBuild.framework.js.gz",
-        codeUrl: "Build/seaBattleBuild.wasm.gz",
+        dataUrl: "Build/seaBattleBuild.data",
+        frameworkUrl: "Build/seaBattleBuild.framework.js",
+        codeUrl: "Build/seaBattleBuild.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "sea ​​battle",
         productVersion: "1.0",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      }).then((unityInstance)=>{
-        myGameInstance = unityInstance;
-
-      myGameInstance.SendMessage('TELEGRAM', 'MethodName', "324");
-      myGameInstance.SendMessage('TELEGRAM', 'MethodName', thisuserid);
-
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
   </body>
 </html>
