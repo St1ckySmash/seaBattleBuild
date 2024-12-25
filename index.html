@@ -46,6 +46,8 @@ let telegramAppChatLabs = window.Telegram.WebApp; //////////https://core.telegra
         document.body.style.textAlign = "left";
       }
 
+      var myGameInstance = null;
+
       createUnityInstance(document.querySelector("#unity-canvas"), {
         dataUrl: "Build/seaBattleBuild.data",
         frameworkUrl: "Build/seaBattleBuild.framework.js",
@@ -60,7 +62,7 @@ let telegramAppChatLabs = window.Telegram.WebApp; //////////https://core.telegra
         myGameInstance = unityInstance;
 
         myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', 'firstName', 'lastName', 'photoURL');
-        myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', firstName, lastName, photoURL);
+        // myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', firstName, lastName, photoURL);
       });
 
 
