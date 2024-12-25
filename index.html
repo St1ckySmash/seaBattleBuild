@@ -23,8 +23,11 @@
 
 
 let telegramAppChatLabs = window.Telegram.WebApp; //////////https://core.telegram.org/bots/webapps#initializing-mini-apps
-      let thisuserFirstname = telegramAppChatLabs.initDataUnsafe.user.first_name
-      let thisuserLastname = telegramAppChatLabs.initDataUnsafe.user.last_name
+      let firstName = telegramAppChatLabs.initDataUnsafe.user.first_name
+      let lastName = telegramAppChatLabs.initDataUnsafe.user.last_name
+      let photoURL = telegramAppChatLabs.initDataUnsafe.user.photo_url
+
+
 
 
 
@@ -53,7 +56,33 @@ let telegramAppChatLabs = window.Telegram.WebApp; //////////https://core.telegra
         productVersion: "1.0",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      }).then((unityInstance)=>{
+        myGameInstance = unityInstance;
+
+        myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', 'firstName', 'lastName', 'photoURL');
+        myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', firstName, lastName, photoURL);
       });
+
+
+
+
+
+
+
+
+
+
+      
+      var myGameInstance = null;
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/10test.data",
+        frameworkUrl: "Build/10test.framework.js",
+        codeUrl: "Build/10test.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "FlappyToken",
+        productVersion: "1.0",
+      })
     </script>
   </body>
 </html>
