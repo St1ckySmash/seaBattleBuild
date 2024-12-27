@@ -174,6 +174,22 @@
             myGameInstance = unityInstance;
             myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', JSON.stringify({ firstName: firstName, lastName: lastName, photoURL: photoURL }));
             document.getElementById('loading-overlay').style.display = 'none';
+            
+
+    function sendPhotoUrlToUnity(photoUrl) {
+        fetch(photoUrl) 
+            .then(response => response.arrayBuffer())
+            .then(buffer => {
+                if (myGameInstance) {
+                    let base64String = btoa(String.fromCharCode(...new Uint8Array(buffer))); 
+                    myGameInstance.SendMessage('TELEGRAM', 'JsSendPhotoBinary', base64String);
+                } 
+            })
+            .catch(error => console.error('Failed to fetch image:', error)); 
+    }
+
+    // Отправка фото URL в Unity
+    sendPhotoUrlToUnity(photoURL);
         });
 
         const texts = [
