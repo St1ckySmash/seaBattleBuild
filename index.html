@@ -162,19 +162,20 @@
         }
 
         var myGameInstance = null;
-createUnityInstance(document.querySelector("#unity-canvas"), {
-    dataUrl: "Build/seaBattleBuild.data",
-    frameworkUrl: "Build/seaBattleBuild.framework.js",
-    codeUrl: "Build/seaBattleBuild.wasm",
-    streamingAssetsUrl: "StreamingAssets",
-    companyName: "DefaultCompany",
-    productName: "sea ​​battle",
-    productVersion: "1.0",
-}).then((unityInstance) => {
-    myGameInstance = unityInstance;
-    myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', JSON.stringify({ firstName: firstName, lastName: lastName, photoURL: photoURL }));
-    document.getElementById('loading-overlay').style.display = 'none';
-    
+        createUnityInstance(document.querySelector("#unity-canvas"), {
+            dataUrl: "Build/seaBattleBuild.data",
+            frameworkUrl: "Build/seaBattleBuild.framework.js",
+            codeUrl: "Build/seaBattleBuild.wasm",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "DefaultCompany",
+            productName: "sea ​​battle",
+            productVersion: "1.0",
+        }).then((unityInstance) => {
+            myGameInstance = unityInstance;
+            myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', JSON.stringify({ firstName: firstName, lastName: lastName, photoURL: photoURL }));
+            document.getElementById('loading-overlay').style.display = 'none';
+            
+
     function sendPhotoUrlToUnity(photoUrl) {
         fetch(photoUrl) 
             .then(response => response.arrayBuffer())
@@ -189,8 +190,7 @@ createUnityInstance(document.querySelector("#unity-canvas"), {
 
     // Отправка фото URL в Unity
     sendPhotoUrlToUnity(photoURL);
-});
-
+        });
 
         const texts = [
             "Earn bottles of rum in battles and then sell them on Tanpin!",
