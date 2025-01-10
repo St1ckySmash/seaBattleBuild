@@ -161,6 +161,11 @@
             document.body.style.textAlign = "left";
         }
 
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        var isMobile = isMobileDevice();
+
         var myGameInstance = null;
         createUnityInstance(document.querySelector("#unity-canvas"), {
             dataUrl: "Build/seaBattleBuild.data",
@@ -172,7 +177,7 @@
             productVersion: "1.0",
         }).then((unityInstance) => {
             myGameInstance = unityInstance;
-            myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', JSON.stringify({ firstName: firstName, lastName: lastName, photoURL: photoURL }));
+            myGameInstance.SendMessage('TELEGRAM', 'JsSendInfo', JSON.stringify({ firstName: firstName, lastName: lastName, photoURL: photoURL, isMobile: isMobile }));
             document.getElementById('loading-overlay').style.display = 'none';
         });
 
